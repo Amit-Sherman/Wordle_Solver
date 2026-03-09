@@ -25,7 +25,7 @@ int main()
  * 1 - yellow (letter in target but not in correct location)
  * 2 - green (letter in target and in correct location)
  */
-std::vector<int> feedback(std::string guess, std::string target)
+std::vector<int> feedback(const std::string& guess, const std::string& target)
 {
     auto result = std::vector<int>(5);
     std::unordered_map<char, int> counts;
