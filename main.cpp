@@ -1,6 +1,6 @@
-#include <iostream>
 #include "Helper.cpp"
 #include "test.cpp"
+
 int main()
 {
     std::vector<std::string> possible_words = load_data("words_file.txt");
