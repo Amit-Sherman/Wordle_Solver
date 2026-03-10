@@ -83,14 +83,20 @@ std::vector<std::string> filter_words(const std::vector<std::string>& possible_w
     return filtered_words;
 }
 
-int get_entropy(const std::vector<std::string>& possible_words, const std::string& guess)
-{
+double get_entropy(const std::vector<std::string>& possible_words, const std::string& guess) {
+    std::vector<int> pattern_counts(243, 0);
+    for (const auto& target : possible_words) {
+        int pattern = translate_to_pattern(feedback(guess, target));
+        pattern_counts[pattern]++;
+    }
+
     double entropy = 0;
-    for(int pattern = 0; pattern < 243; pattern++)
-    {
-        auto filtered_words = filter_words(possible_words, guess, pattern);
-        double p = filtered_words.size()/possible_words.size();
-        entropy += p*filtered_words.size();
+    double total_words = possible_words.size();
+    for (int count : pattern_counts) {
+        if (count > 0) {
+            double p = count / total_words;
+            entropy -= p * log2(p);
+        }
     }
     return entropy;
 }

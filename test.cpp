@@ -2,13 +2,13 @@
 #include <iostream>
 #include <vector>
 #include <string>
-void print_words(const std::vector<std::string>& words)
+void print_words(const std::vector<std::pair<std::string, int>>& words)
 {
     std::ofstream outputFile("output.txt");
     if (outputFile.is_open()){
-        for (const std::string& word : words)
+        for (auto word : words)
         {
-            outputFile << word << std::endl;
+            outputFile << word.first  << word.second << std::endl;
         }
         outputFile.close();
     }
