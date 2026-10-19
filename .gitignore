@@ -31,3 +31,8 @@
 *.exe
 *.out
 *.app
+
+# Python virtual environment and auto_wordle outputs
+.venv/
+wordle_engine
+wordle_error.png
