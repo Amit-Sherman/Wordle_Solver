@@ -3,12 +3,12 @@
 
 int main()
 {
-    auto words_dataset = load_data("words_file.txt");
-    auto possible_words = words_dataset;
+    auto words_dataset = load_data("allowed_words.txt");
+    auto possible_words = load_data("target_words.txt");
 
     while (true)
     {
-        auto best_word = best_words_to_guess(words_dataset,possible_words)[0];
+        auto best_word = best_words_to_guess(words_dataset, possible_words)[0];
 
         std::cout << "\nSuggested guess: "
                   << best_word.first

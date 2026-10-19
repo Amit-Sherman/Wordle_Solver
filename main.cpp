@@ -9,22 +9,23 @@ int main()
 {
     // load words dataset
     std::cout << "Loading dataset . . ." << std::endl;
-    auto words_dataset = load_data("words_file.txt");
+    auto words_dataset = load_data("allowed_words.txt");
+    auto target_words = load_data("target_words.txt");
     std::cout << "Finished loading dataset" << std::endl;
     // pick a random target
     std::random_device rd;
     std::mt19937 gen(rd());
-    int size = words_dataset.size();
+    int size = target_words.size();
     std::uniform_int_distribution<> distrib(0, size - 1);
 
     // calculate the best first word for all games, because it is always the same
     std::cout << "Finding first best word to guess . . ." << std::endl;
-    auto first_best_word = best_words_to_guess(words_dataset, words_dataset)[0];
+    auto first_best_word = best_words_to_guess(words_dataset, target_words)[0];
     std::vector<int> guesses;
 
     for (int i = 0; i < NUM_OF_GAMES; i++)
     {
-        auto possible_words = words_dataset;
+        auto possible_words = target_words;
         std::string target = possible_words[distrib(gen)];
         std::cout << "Target is: " << target << std::endl;
         int n_guesses = 0;
